@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание</title>
+
+    <link rel="stylesheet" type="text/css" href="./Расписание_files/normalize.css">
+    <link rel="stylesheet" type="text/css" href="./Расписание_files/main.css">
+    <link rel="stylesheet" type="text/css" href="./Расписание_files/pfdintextcondpro.css">
+
+    <style>
+        .time {
+            font-size: 90px;
+            font-weight: bold;
+        }
+        .date {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="demo_page_wrapper home_page">
+
+    <!-- ВРЕМЯ -->
+    <div class="header time" id="clock">
+        <span id="hours">00 :</span>
+        <span id="minutes">00</span>
+    </div>
+
+    <!-- ДАТА -->
+    <div class="date" id="date"></div>
+
+    <!-- ИНФОРМАЦИЯ -->
+    <div class="info_block">
+        <div class="title red">Справочная информация!</div>
+        <div class="descr">
+            <p>
+                Уважаемые пациенты<br><br>
+
+                <strong>По всем вопросам качества и доступности оказания медицинской помощи:</strong><br><br>
+
+                <strong>Директор</strong> — Асен Айгул Асенқызы<br>
+                📞 +7 (701) 111-61-81 (WhatsApp)<br><br>
+
+                <strong>Зам. директора по ЛПР</strong> — Рахманбердиева Салтанат Рахматильдаевна<br>
+                📞 +7 (701) 766-58-61 (WhatsApp)<br><br>
+
+                <strong>Руководитель СППиВА</strong> — Мусирепова Саркыткуль Карменовна<br>
+                📞 +7 (701) 521-94-35 (WhatsApp)
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<!-- СКРИПТ ЧАСОВ -->
+<script>
+function updateClock() {
+    const now = new Date();
+
+    // Время Алматы
+    const timeFormatter = new Intl.DateTimeFormat('ru-RU', {
+        timeZone: 'Asia/Almaty',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    const [hours, minutes] = timeFormatter.format(now).split(':');
+
+    document.getElementById('hours').textContent = hours + ' :';
+    document.getElementById('minutes').textContent = minutes;
+
+    // Дата
+    const dateFormatter = new Intl.DateTimeFormat('ru-RU', {
+        timeZone: 'Asia/Almaty',
+        day: 'numeric',
+        month: 'long',
+        weekday: 'long'
+    });
+
+    document.getElementById('date').textContent = dateFormatter.format(now);
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
